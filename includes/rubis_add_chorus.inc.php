@@ -21,7 +21,7 @@ $extrafields = new ExtraFields($this->db); // les extrafields de la pièce
 $extralabels = $extrafields->fetch_name_optionals_label($object->table_element);
 // on récupère le résultat dans $societe->array_options["options_NOMDUCHAMP"];
 $res = $object->fetch_optionals($object->id, $extralabels);
-var_dump($object);
+
 if (!empty($extrafields->attributes[$object->table_element]['label']['d4d_contract_number']) && !empty($object->array_options["options_d4d_contract_number"])) {
 	$textmarche = $outputlangs->transnoentities("RubisContractNumber") . $extrafields->showOutputField("d4d_contract_number", $object->array_options["options_d4d_contract_number"],'', $object->element) . "<br />";
 	$notetoshow = $textmarche . $notetoshow;
