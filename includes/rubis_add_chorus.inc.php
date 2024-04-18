@@ -16,22 +16,18 @@
 * or see http://www.gnu.org/
 */
 
-$extrafields= new ExtraFields($this->db); // les extrafields de la pièce
+$extrafields = new ExtraFields($this->db); // les extrafields de la pièce
 // on récupère les champs dans extralabels
-$extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
+$extralabels = $extrafields->fetch_name_optionals_label($object->table_element);
 // on récupère le résultat dans $societe->array_options["options_NOMDUCHAMP"];
-$res=$object->fetch_optionals($object->id,$extralabels);
-			
-$refmarche=$extrafields->showOutputField("d4d_contract_number", $object->array_options["options_d4d_contract_number"]);
-if(!empty($refmarche))
-{
-	$textmarche=$outputlangs->transnoentities("RubisContractNumber").$extrafields->showOutputField("d4d_contract_number", $object->array_options["options_d4d_contract_number"]."<br />");
-	$notetoshow=$textmarche.$notetoshow;
+$res = $object->fetch_optionals($object->id, $extralabels);
+var_dump($object);
+if (!empty($extrafields->attributes[$object->table_element]['label']['d4d_contract_number']) && !empty($object->array_options["options_d4d_contract_number"])) {
+	$textmarche = $outputlangs->transnoentities("RubisContractNumber") . $extrafields->showOutputField("d4d_contract_number", $object->array_options["options_d4d_contract_number"],'', $object->element) . "<br />";
+	$notetoshow = $textmarche . $notetoshow;
 }
-$refengagement=$extrafields->showOutputField("d4d_promise_code", $object->array_options["options_d4d_promise_code"]);
-if(!empty($refengagement))
-{
-	$textengagement=$outputlangs->transnoentities("RubisPromiseCode").$extrafields->showOutputField("d4d_promise_code", $object->array_options["options_d4d_promise_code"]."<br />");
-	$notetoshow=$textengagement.$notetoshow;
+
+if (!empty($extrafields->attributes[$object->table_element]['label']['d4d_promise_code']) && !empty($object->array_options["options_d4d_promise_code"])) {
+	$textengagement = $outputlangs->transnoentities("RubisPromiseCode") . $extrafields->showOutputField("d4d_promise_code", $object->array_options["options_d4d_promise_code"],'', $object->element) . "<br />";
+	$notetoshow = $textengagement . $notetoshow;
 }
-?>
